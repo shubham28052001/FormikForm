@@ -1,100 +1,106 @@
-# 🚀 React Form Using Single useState
+# 🚀 React Formik Registration Form
 
-## 📌 About This Project
+This is a Registration Form built using **React**, **Formik**, and **Yup**.
 
-In this project, I learned how to create a complete form in React using **only one `useState` object**, instead of creating multiple states for every input field.
-
-I also implemented reusable functions to handle all types of inputs like:
-
-- Text input  
-- Email  
-- Password  
-- Select dropdown  
-- Radio buttons  
-- Single checkbox  
-- Multiple checkboxes (array)  
-
-This approach makes the code clean, scalable, and easy to manage.
+The project demonstrates how to handle complex forms including text inputs, password matching, dropdowns, radio buttons, multiple checkboxes, and validations.
 
 ---
 
-## 🚀 Key Learnings
+## ✨ Features
 
-### ✅ Single useState for Entire Form
+- Form handling using Formik
+- Schema based validation using Yup
+- Password & confirm password matching
+- Dropdown (Education)
+- Radio buttons (Gender)
+- Multiple checkbox selection (Skills)
+- Terms & Conditions checkbox
+- Error messages for each field
+- Clean and simple structure
 
-Instead of writing multiple states:
+---
+
+## 🛠 Tech Stack
+
+- React
+- Formik
+- Yup
+- JavaScript
+
+---
+
+## 📦 Installation
+
+Clone repository:
+
+```bash
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+npm install
+npm run dev
+```
+### 📋 Form Fields
+
+First Name
+
+Last Name
+
+Email
+
+Password
+
+Confirm Password
+
+Education (Dropdown)
+
+Gender (Radio)
+
+Skills (Multiple Checkbox)
+
+Terms Acceptance
+
+## ❌ Problem with Normal Formik Validation
+
+Initially, manual validation was implemented using multiple if conditions.
+
+Issues faced:
+
+Too many if statements for every field
+
+Code becomes lengthy and difficult to maintain
+
+Logical mistakes easily occur
+
+Not reusable for other forms
+
+Readability becomes poor for large forms
 
 ```js
-const [name, setName] = useState("");
-const [email, setEmail] = useState("");
+Example:
+
+if (!email) {}
+if (!password) {}
+if (password !== confirmpassword) {}
 ```
-### I used a single state object:
+
+✅ Why Yup is Used
+
+Yup provides schema-based validation, removing the need for multiple if conditions.
 ```js
-const [form, setForm] = useState({
-  name: "",
-  email: "",
-  password: "",
-  education: "",
-  confirmpassword: "",
-  gender: "",
-  skills: [],
-  agree: false
-});
+email: Yup.string().required("Email required")
 ```
-## ✅ Common handleChange Function
-Used one function to handle:
+### ✅ Validation Rules Implemented
 
-text
+Firstname minimum length
 
-email
+Email format check
 
-password
+Password match
 
-select
+Education required
 
-radio
+Gender required
 
-single checkbox
+At least one skill required
 
-```js
-function handleChange(e){
-  const { name, value, type, checked } = e.target;
-
-  setForm({
-    ...form,
-    [name]: type === "checkbox" ? checked : value
-  });
-}
-```
-✅ Multiple Checkbox Handling (Skills Array)
-For skills selection, values are stored in an array:
-
-```js
-function handleSkills(e){
-     e.target.checked ? setForm({ ...form, skills: [...form.skills, e.target.value] }) :
-      setForm({ ...form, skills: form.skills.filter(skills =>skills !== e.target.value)})
-}
-```
-✅ Radio Buttons
-Radio buttons are controlled using checked comparison:
-
-```js checked={form.gender === "MALE"} ```
-✅ Checkbox Rules
-Boolean checkbox:
-```js checked={form.agree}
-Multiple checkbox (array):
-checked={form.skills.includes("Cricket")}
-```
-🎯 What I Learned
-How to build controlled forms in React
-
-How to manage complete form using a single useState
-
-How to handle radio buttons properly
-
-How to store multiple checkbox values in array
-
-How to create reusable input handlers
-
-Clean and professional state management
-
+Terms must be accepted
