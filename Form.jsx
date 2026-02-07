@@ -22,8 +22,8 @@ export default function Form() {
   }
 
   function handleSkills(e) {
-    e.target.checked ? setForm({ ...form, skills: [...form.skills, e.target.value] }) :
-      setForm({ ...form, skills: form.skills.filter(skills =>skills !== e.target.value)})
+    e.target.checked ? setForm({ ...form, [e.target.name]: [...form.skills, e.target.value] }) :
+      setForm({ ...form, [e.target.name]: form.skills.filter(skills =>skills !== e.target.value)})
   }
 
   function handleAgree(e) {
